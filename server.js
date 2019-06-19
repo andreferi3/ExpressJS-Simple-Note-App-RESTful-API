@@ -14,10 +14,14 @@ const app = express();
 const env = require('./config');
 
 // use bodyParser
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-// use cors
-app.use(cors());
+const configCors = {
+    origin: ['http://192.168.100.15', 'http://192.168.100.56', 'http://192.168.100.28'],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE']
+};
+app.use(cors(configCors));
 
 // define routes
 routes(app);

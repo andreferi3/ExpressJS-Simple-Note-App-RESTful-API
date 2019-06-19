@@ -2,6 +2,7 @@
 // author : andreferi
 
 module.exports = (app) => {
+    // call all requirement here
     const noteController = require("../controller/notesController");
     const categoryController = require("../controller/categoryController");
     const appController = require("../controller/appController");
@@ -10,33 +11,21 @@ module.exports = (app) => {
     app.get("/", noteController.home);
     app.get("/notes", noteController.allNotes);
     app.get("/notes/:id", noteController.notes);
+    app.post("/notes", noteController.addNote);
+    app.patch("/notes/:id", noteController.editNote);
+    app.delete("/notes/:id", noteController.deleteNote);
+    
+    // GET ALL NOTE BY CATEGORY
+    app.get("/notes/category/:id", appController.noteByCatId);
 
-    // GET APP
-    app.get("/notes/category/:id", appController.noteByCatId)
+    // GET JOINED DATA
+    app.get('/all-notes', appController.app);
 
     // GET CATEGORIES
     app.get("/", categoryController.home);
     app.get("/category", categoryController.allCat);
     app.get("/category/:id", categoryController.category);
-
-    // GET JOINED DATA
-    app.get('/app', appController.app);
-
-    // POST NOTES
-    app.post("/add-note", noteController.addNote);
-
-    // POST CATEGORIES
-    app.post("/add-category", categoryController.addCat);
-
-    // PATCH NOTES
-    app.patch('/edit-note/:id', noteController.editNote);
-
-    // PATCH CATEGORIES
-    app.patch('/edit-category/:id', categoryController.editCat);
-
-    // DELETE NOTES
-    app.delete('/notes/delete/:id', noteController.deleteNote);
-
-    // DELETE CATEGORIES
-    app.delete('/category/delete/:id', categoryController.deleteCat);
+    app.post("/category", categoryController.addCat);
+    app.patch("/category/:id", categoryController.editCat);
+    app.delete("/category/:id", categoryController.deleteCat);
 }

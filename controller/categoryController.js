@@ -2,6 +2,7 @@
 
 const connection = require("../database/connect");
 const isEmpty = require("lodash.isempty");
+const response = require("../responses");
 
 // GET
 exports.home = (req, res) => {
@@ -15,7 +16,7 @@ exports.allCat = (req, res) => {
             if(err) {
                 throw err;
             } else {
-                return res.json(result);
+                return response.ok(200, "Data loaded!", res, result);
             }
         }
     );
@@ -35,18 +36,9 @@ exports.category = (req, res, next) => {
                     throw err;
                 } else {
                     if(result.length === 0 || result.length === '') {
-                        res.send({
-                            error: true,
-                            message: "No data found!"
-                        });
+                        return response.err(404, "Data not found!", res);
                     } else {
-                        return res.send({
-                            status: 200,
-                            message: "Data note id : " + id + " loaded!",
-                            data : {
-                                result
-                            }
-                        });
+                        return response.ok(200, "Data Loaded!", res, result);
                     }
                 }
             }
@@ -59,10 +51,7 @@ exports.addCat = (req, res) => {
     let name = req.body.name;
 
     if(isEmpty(req.body.name)) {
-        res.send({
-            error: true,
-            message: "Data must filled!"
-        });
+        return response.err(404, "Data not found!", res);
     } else {
         connection.query(
             `INSERT INTO category SET name=?`,
@@ -72,17 +61,7 @@ exports.addCat = (req, res) => {
                     throw err;
                 } else {
                     let resultId = result.insertId;
-
-                    return res.send({
-                        status: 200,
-                        error: false,
-                        message: "Successfully create a new NOTE!",
-                        data: {
-                            'id' : resultId,
-                            'name' : name,
-                            'timestamp' : result['timestamp']
-                        }
-                    });
+                    return response.postCat(201, "Success create new category!", res, result);
                 }
             }
         );
@@ -94,41 +73,30 @@ exports.editCat = (req, res, next) => {
     // get id from link with params
     let id = req.params.id;
 
-    if(id === 0 || id === '') {
-        next("route");
-    } else {
-        // initialize all data
-        let name = req.body.name;
+    // initialize all data
+    let name = req.body.name;
 
-        if(isEmpty(req.body.name)) {
-            res.send({
-                error: true,
-                message: 'Data must filled!'
-            });
-        } else {
-            connection.query(
-                `UPDATE category SET title=?, note=?, time=?, category_id=? WHERE id=?`,
-                [name, id],
-                (err, result, field) => {
-                    if(err) {
-                        throw err;
+    if(isEmpty(req.body.name)) {
+        res.send({
+            error: true,
+            message: 'Data must filled!'
+        });
+    } else {
+        connection.query(
+            `UPDATE category SET title=?, note=?, time=?, category_id=? WHERE id=?`,
+            [name, id],
+            (err, result, field) => {
+                if(err) {
+                    throw err;
+                } else {
+                    if(result.affectedRows == 0 || result.affectedRows == '') {
+                        return response.err(404, "Data not found!", res);
                     } else {
-                        if(result.affectedRows == 0 || result.affectedRows == '') {
-                            res.send({
-                                error: true,
-                                message: "No data found!"
-                            });
-                        } else {
-                            return res.send({
-                                error: false,
-                                data: result,
-                                message: "Update Success!"
-                            });
-                        }
+                        return response.postCat(201, "Success update category!", res, result);
                     }
                 }
-            );
-        }
+            }
+        );
     }
 }
 
@@ -136,32 +104,19 @@ exports.editCat = (req, res, next) => {
 exports.deleteCat = (req, res, next) => {
     let id = req.params.id;
 
-    if(id == 0 || id === '') {
-        next("route");
-    } else {
-        connection.query(
-            `DELETE FROM category WHERE id=?`,
-            [id],
-            (err, result, field) => {
-                if(err) {
-                    throw err;
+    connection.query(
+        `DELETE FROM category WHERE id=?`,
+        [id],
+        (err, result, field) => {
+            if(err) {
+                throw err;
+            } else {
+                if(result.affectedRows === 0 || result.affectedRows === '') {
+                    return response.err(404, "Data not found!", res);
                 } else {
-                    if(result.affectedRows === 0 || result.affectedRows === '') {
-                        res.send({
-                            error: true,
-                            message: "No data found!"
-                        });
-                    } else {
-                        return res.send({
-                            status : 200,
-                            message : "Delete successfully!",
-                            data : {
-                                'id' : id
-                            }
-                        });
-                    }
+                    return response.ok(200, "Success delete category!", res, result);
                 }
             }
-        );
-    }
+        }
+    );
 }

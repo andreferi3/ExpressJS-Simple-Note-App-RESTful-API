@@ -1,5 +1,22 @@
 # ExpressJS - Simple Note App RESTful API
 
+<p align="center">
+  <a href="https://nodejs.org/">
+    <img alt="restfulapi" title="Restful API" src="https://cdn-images-1.medium.com/max/871/1*d2zLEjERsrs1Rzk_95QU9A.png">
+  </a>
+</p>
+
+## Table of contents
+* [Introduction](#introduction)
+* [Requirements](#requirements)
+* [How to run the app ?](#how-to-run-the-app-)
+* [Set up .env file](#set-up-env-file)
+* [End Point List](#end-point-list)
+
+## Introduction
+[![Express.js](https://img.shields.io/badge/Express.js-4.x-orange.svg?style=rounded-square)](https://expressjs.com/en/starter/installing.html)
+[![Node.js](https://img.shields.io/badge/Node.js-v.10.16-green.svg?style=rounded-square)](https://nodejs.org/)
+
 Here i was built the Simple Note App which specially for backend only.
 
 Express.js, or simply Express, is a web application framework for Node.js. [More about Express](https://en.wikipedia.org/wiki/Express.js)

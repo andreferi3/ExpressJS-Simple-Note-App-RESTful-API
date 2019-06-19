@@ -1,4 +1,4 @@
-# ExpressJS - Simple Note App RESTful API
+<h1 align="center">ExpressJS - Simple Note App RESTful API</h1>
 
 <p align="center">
   <a href="https://nodejs.org/">

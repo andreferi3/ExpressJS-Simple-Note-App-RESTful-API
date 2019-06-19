@@ -43,8 +43,8 @@ NODE_ENV=development
 PORT=3000
 
 DB_HOST=localhost
-DB_USER=root // 
-DB_PASS=
+DB_USER=root // default
+DB_PASS= // default
 DB_NAME=simple_note_app
 ```
 

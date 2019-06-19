@@ -2,7 +2,6 @@
 // author : andreferi
 
 module.exports = (app) => {
-    // call all requirement here
     const noteController = require("../controller/notesController");
     const categoryController = require("../controller/categoryController");
     const appController = require("../controller/appController");

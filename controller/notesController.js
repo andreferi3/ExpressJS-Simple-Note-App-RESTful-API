@@ -73,9 +73,7 @@ exports.notes = (req, res) => {
 exports.addNote = (req, res) => {
     let title = req.body.title;
     let note = req.body.note;
-    // Make a date according to today
     let today = moment().format("YYYY-MM-DD");
-    // get category id
     let catId = req.body.category_id;
 
     if(isEmpty(req.body.title) && isEmpty(note) && isEmpty(catId)) {
@@ -89,7 +87,6 @@ exports.addNote = (req, res) => {
                     throw err;
                 } else {
                     let resultId = result.insertId;
-
                     return response.post(201, "Successfully create a new note!", res, result);
                 }
             }
@@ -99,14 +96,10 @@ exports.addNote = (req, res) => {
 
 // PATCH or UPDATE
 exports.editNote = (req, res) => {
-    // get id from link with params
     let id = req.params.id;
-
-    // initialize all data
     let title = req.body.title;
     let note = req.body.note;
     let catId = req.body.category_id;
-    // make a date according to today
     let today = moment().format("YYYY-MM-DD");
 
     if(isEmpty(req.body.title) && isEmpty(req.body.note) && isEmpty(req.body.catId)) {

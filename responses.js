@@ -1,3 +1,4 @@
+// author andreferi
 'use strict'
 
 exports.ok = (sts, msg, res, result) => {

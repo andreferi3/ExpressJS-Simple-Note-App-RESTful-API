@@ -69,11 +69,8 @@ exports.addCat = (req, res) => {
 }
 
 // PATCH or UPDATE
-exports.editCat = (req, res, next) => {
-    // get id from link with params
+exports.editCat = (req, res) => {
     let id = req.params.id;
-
-    // initialize all data
     let name = req.body.name;
 
     if(isEmpty(req.body.name)) {
@@ -101,7 +98,7 @@ exports.editCat = (req, res, next) => {
 }
 
 // DELETE
-exports.deleteCat = (req, res, next) => {
+exports.deleteCat = (req, res) => {
     let id = req.params.id;
 
     connection.query(

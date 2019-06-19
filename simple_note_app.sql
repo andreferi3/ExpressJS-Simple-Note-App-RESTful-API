@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Jun 19, 2019 at 05:26 PM
+=======
+-- Generation Time: Jun 18, 2019 at 03:41 PM
+>>>>>>> bf65c51d63d6bbb0b21d125770112b5bb0152d97
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -39,9 +43,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `timestamp`) VALUES
+<<<<<<< HEAD
 (1, 'Sports', '2019-06-17 16:12:49'),
 (2, 'programming', '2019-06-19 03:01:34'),
 (3, 'Nature', '2019-06-19 14:35:52');
+=======
+(1, 'Sports', '2019-06-17 16:12:49');
+>>>>>>> bf65c51d63d6bbb0b21d125770112b5bb0152d97
 
 -- --------------------------------------------------------
 
@@ -53,7 +61,11 @@ CREATE TABLE `notes` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `note` varchar(255) NOT NULL,
+<<<<<<< HEAD
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+=======
+  `time` date NOT NULL,
+>>>>>>> bf65c51d63d6bbb0b21d125770112b5bb0152d97
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -62,6 +74,7 @@ CREATE TABLE `notes` (
 --
 
 INSERT INTO `notes` (`id`, `title`, `note`, `time`, `category_id`) VALUES
+<<<<<<< HEAD
 (1, 'Make a new Project', 'Tomorrow i should completed some new project from my office', '2019-06-17 17:01:00', 1),
 (4, 'Playing Basketball', 'Lorem ipsum dolor set amet', '2019-06-17 17:03:00', 2),
 (6, 'Mandi', 'ayo mandi!', '2019-06-17 17:04:00', 1),
@@ -85,6 +98,12 @@ INSERT INTO `notes` (`id`, `title`, `note`, `time`, `category_id`) VALUES
 (24, 'Tes10', 'Lorem ipsum dolor set amet dolor kolor', '2019-06-19 21:43:31', 3),
 (25, 'Tes11', 'Lorem ipsum dolor set amet dolor kolor', '2019-06-19 21:43:31', 3),
 (26, 'Tes12', 'Lorem ipsum dolor set amet dolor kolor', '2019-06-19 21:43:31', 2);
+=======
+(1, 'Make a new Project', 'Tomorrow i should completed some new project from my office', '2019-06-17', 1),
+(3, 'Finish Project First', 'Lets go ahead for finished the new project with awesome.', '2019-06-17', 1),
+(4, 'Playing Basketball', 'Lorem ipsum dolor set amet', '2019-06-17', 2),
+(6, 'Mandi', 'ayo mandi!', '2019-06-17', 1);
+>>>>>>> bf65c51d63d6bbb0b21d125770112b5bb0152d97
 
 --
 -- Indexes for dumped tables
@@ -110,13 +129,21 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> bf65c51d63d6bbb0b21d125770112b5bb0152d97
 
 --
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+>>>>>>> bf65c51d63d6bbb0b21d125770112b5bb0152d97
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

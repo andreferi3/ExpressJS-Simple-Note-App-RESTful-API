@@ -29,7 +29,7 @@ Express.js, or simply Express, is a web application framework for Node.js. [More
 ## How to run the app ?
 1. Open CMD or Terminal and enter to the app directory
 2. Type `npm install`
-3. Make a new file called **.env** in the root directory, set up first [here](https://github.com/andreferi3/ExpressJS-Simple-Note-App-RESTful-API/new/master?readme=1#set-up-env-file)
+3. Make a new file called **.env** in the root directory, set up first [here](#set-up-env-file)
 4. Turn on Web Server and MySQL can using Third-party tool like xampp, etc.
 5. Import file [simple_note_app.sql](simple_note_app.sql) to **phpmyadmin**
 6. Open Postman desktop application or Chrome web app extension that has installed before

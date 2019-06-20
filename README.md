@@ -56,6 +56,9 @@ DB_NAME=simple_note_app
 * `/category/:id` (Get category by id)
 * `/notes/category/:id` (Get notes by category id)
 * `/all-notes` (Get all notes with category name)
+* `/notes?search=note_title` (Search operation)
+* `/notes?sort=` (Sort operation) // fill with asc or desc
+* `/notes?page=` (Paging for limiting notes) // fill only with integer
 
 **2. POST**
 * `/notes`

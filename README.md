@@ -34,7 +34,7 @@ Express.js, or simply Express, is a web application framework for Node.js. [More
 5. Import file [simple_note_app.sql](simple_note_app.sql) to **phpmyadmin**
 6. Open Postman desktop application or Chrome web app extension that has installed before
 7. Choose HTTP Method and enter request url.(ex. localhost:8080/notes)
-8. You can see all the end point [here](https://github.com/andreferi3/ExpressJS-Simple-Note-App-RESTful-API/new/master?readme=1#end-point-list)
+8. You can see all the end point [here](#end-point-list)
 
 ## Set up .env file
 Open .env file on your favorite code editor, and copy paste this code below :

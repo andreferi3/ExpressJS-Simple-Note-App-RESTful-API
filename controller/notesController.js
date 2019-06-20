@@ -11,17 +11,21 @@ exports.home = (req, res) => {
 };
 
 exports.allNotes = (req, res) => {
+    var query = `SELECT notes.id AS id_note, notes.title AS notes_title, notes.note AS note_description, notes.created_at, notes.updated_at, category.name AS category FROM notes LEFT JOIN category ON notes.category_id = category.id`;
 
-    var query = `SELECT notes.id AS id_note, notes.title AS notes_title, notes.note AS note_description, notes.time AS note_created, category.name AS category FROM notes LEFT JOIN category ON notes.category_id = category.id`;
+    var queryCount = `SELECT COUNT(title) AS TotalData FROM notes`;
 
     if(!isEmpty(req.query.search)) {
         let search = req.query.search;
         query += ` WHERE title LIKE '%${search}%'`;
+        queryCount += ` WHERE title LIKE '%${search}%'`;
     }
     
-    if(!isEmpty(req.query.sort)) {
+    if(isEmpty(req.query.sort) || req.query.sort == '') {
+        query += ` ORDER BY created_at DESC`;
+    } else {
         let sort = req.query.sort;
-        query += ` ORDER BY time ${sort}`;
+        query += ` ORDER BY created_at ${sort}`;
     }
 
     var page, limit;
@@ -34,6 +38,15 @@ exports.allNotes = (req, res) => {
     query += ` LIMIT ${limit} OFFSET ${startPage}`;
 
     connection.query(
+        queryCount, 
+        (err, rows) => {
+            if(err) {
+                throw err;
+            } else {
+                var totalData = rows[0].TotalData;
+            }
+
+    connection.query(
         query,
         (err, result, field) => {
             if(err) {
@@ -42,11 +55,22 @@ exports.allNotes = (req, res) => {
                 if(result.length === 0 || result.length === '') {
                     response.err(404, "Data not found!", res);
                 } else {
-                    response.ok(200, "Data loaded", res, result);
+                    var pageInUse;
+                    (!isEmpty(req.query.page) ? pageInUse = parseInt(req.query.page) : pageInUse = 1);
+
+                    var pageCount = Math.ceil(totalData / limit);
+
+                    res.json({
+                        "Total Data" : totalData,
+                        "Current Page" : pageInUse,
+                        "Page Count" : pageCount,
+                        "Limit" : limit,
+                        "Data" : result
+                    });
                 }
             }
-        }
-    );
+        }); 
+    });
 }
 
 exports.notes = (req, res) => {
@@ -80,7 +104,7 @@ exports.addNote = (req, res) => {
         response.err(404, "Data not found!", res);
     } else {
         connection.query(
-            `INSERT INTO notes SET title=?, note=?, time=?, category_id=?`,
+            `INSERT INTO notes SET title=?, note=?, created_at=?, category_id=?`,
             [title, note, today, catId],
             (err, result, field) => {
                 if(err) {
@@ -106,7 +130,7 @@ exports.editNote = (req, res) => {
         response.err(400, "Data body can't be empty!", res);
     } else {
         connection.query(
-            `UPDATE notes SET title=?, note=?, time=?, category_id=? WHERE id=?`,
+            `UPDATE notes SET title=?, note=?, updated_at=?, category_id=? WHERE id=?`,
             [title, note, today, catId, id],
             (err, result, field) => {
                 if(err) {

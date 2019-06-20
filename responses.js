@@ -12,6 +12,21 @@ exports.ok = (sts, msg, res, result) => {
     res.end();
 }
 
+exports.notesOk = (sts, msg, res, result) => {
+    let data = {
+        status: sts,
+        message: msg,
+        result
+    };
+
+    res.status(sts);
+    res.json({
+        "Total Data" : totalData,
+        "Data" : result
+    });
+    res.end();
+}
+
 exports.err = (sts, msg, res) => {
     let data = {
         status : sts,

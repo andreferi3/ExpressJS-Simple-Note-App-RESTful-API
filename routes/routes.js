@@ -13,12 +13,6 @@ module.exports = (app) => {
     app.post("/notes", noteController.addNote);
     app.patch("/notes/:id", noteController.editNote);
     app.delete("/notes/:id", noteController.deleteNote);
-    
-    // GET ALL NOTE BY CATEGORY
-    app.get("/notes/category/:id", appController.noteByCatId);
-
-    // GET JOINED DATA
-    app.get('/all-notes', appController.app);
 
     // GET CATEGORIES
     app.get("/", categoryController.home);
@@ -27,4 +21,5 @@ module.exports = (app) => {
     app.post("/category", categoryController.addCat);
     app.patch("/category/:id", categoryController.editCat);
     app.delete("/category/:id", categoryController.deleteCat);
+    app.get("/notes/category/:id", appController.noteByCatId);
 }

@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   category.associate = function(models) {
     // associations can be defined here
+    category.hasMany(models.notes);
   };
   return category;
 };

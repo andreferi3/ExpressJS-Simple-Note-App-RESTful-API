@@ -18,8 +18,9 @@ module.exports = (app) => {
 
     app.get("/note", note.allData);
     app.post("/note", note.addNote);
-    app.put("/note/:id", note.updNote);
+    app.patch("/note/:id", note.updNote);
     app.delete("/note/:id", note.delNote);
+    app.get("/note/:id", note.getOneNote);
 
     // GET CATEGORIES
     app.get("/", categoryController.home);
@@ -28,10 +29,11 @@ module.exports = (app) => {
     app.post("/category", categoryController.addCat);
     app.patch("/category/:id", categoryController.editCat);
     app.delete("/category/:id", categoryController.deleteCat);
-    app.get("/notes/category/:id", appController.noteByCatId);
+    app.get("/note/categories/:id", appController.noteByCatId);
 
     app.get("/categories", categoriesController.get);
     app.post("/categories", categoriesController.add);
     app.patch("/categories/:id", categoriesController.update);
     app.delete("/categories/:id", categoriesController.delete);
+    app.get("/note/category/:id", categoriesController.getByCategory);
 }

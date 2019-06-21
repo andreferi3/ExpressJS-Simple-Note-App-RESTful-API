@@ -104,3 +104,16 @@ exports.delete = async (req, res, next) => {
           })
     }
 }
+
+exports.getByCategory = async (req, res, next) => {
+  await model.category.findAll({
+    where : {id: req.params.id},
+    include: [{model: model.notes}]
+  }).then(data => {
+    res.status(200).json({
+      status: "OK",
+      message: "Data loaded",
+      result: data
+    });
+  })
+}

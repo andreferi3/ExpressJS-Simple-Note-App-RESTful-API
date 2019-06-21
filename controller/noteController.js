@@ -88,11 +88,11 @@ exports.updNote = async (req, res, next) => {
         const noteId = req.params.id;
 
         const {
-            title, note, categoryId
+            title, note, categoryId, updatedAt
         } = req.body;
 
         const notes = await model.notes.update({
-            title, note, categoryId
+            title, note, categoryId, updatedAt
         }, {
             where : {
                 id : noteId
@@ -139,4 +139,17 @@ exports.delNote = async (req, res, next) => {
             data: {}
         });
     }
+}
+
+exports.getOneNote = (req, res, next) => {
+    const notes = model.notes.findOne({
+        where: { id: req.params.id},
+        include: [{model: model.category}]
+    }).then(result => {
+        res.status(200).json({
+            status: "OK",
+            message: "Data loaded",
+            data: result
+        });
+    });
 }

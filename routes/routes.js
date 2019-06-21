@@ -5,6 +5,8 @@ module.exports = (app) => {
     const noteController = require("../controller/notesController");
     const categoryController = require("../controller/categoryController");
     const appController = require("../controller/appController");
+    const categoriesController = require("../controller/categoriesController");
+    const note = require("../controller/noteController");
 
     // GET NOTES
     app.get("/", noteController.home);
@@ -14,6 +16,11 @@ module.exports = (app) => {
     app.patch("/notes/:id", noteController.editNote);
     app.delete("/notes/:id", noteController.deleteNote);
 
+    app.get("/note", note.allData);
+    app.post("/note", note.addNote);
+    app.put("/note/:id", note.updNote);
+    app.delete("/note/:id", note.delNote);
+
     // GET CATEGORIES
     app.get("/", categoryController.home);
     app.get("/category", categoryController.allCat);
@@ -22,4 +29,9 @@ module.exports = (app) => {
     app.patch("/category/:id", categoryController.editCat);
     app.delete("/category/:id", categoryController.deleteCat);
     app.get("/notes/category/:id", appController.noteByCatId);
+
+    app.get("/categories", categoriesController.get);
+    app.post("/categories", categoriesController.add);
+    app.patch("/categories/:id", categoriesController.update);
+    app.delete("/categories/:id", categoriesController.delete);
 }

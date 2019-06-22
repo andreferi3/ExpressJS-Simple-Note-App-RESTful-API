@@ -40,7 +40,7 @@ Express.js, or simply Express, is a web application framework for Node.js. [More
 Open .env file on your favorite code editor, and copy paste this code below :
 ```
 NODE_ENV=development
-PORT=3000
+PORT= // fill with your port
 
 DB_HOST=localhost
 DB_USER=root // default
@@ -48,7 +48,7 @@ DB_PASS= // default
 DB_NAME=simple_note_app
 ```
 
-## End Point List
+## Path List
 **1. GET**
 * `/notes`
 * `/notes/:id` (Get notes by id)

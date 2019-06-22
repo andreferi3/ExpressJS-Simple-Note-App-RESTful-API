@@ -48,7 +48,7 @@ DB_PASS= // default
 DB_NAME=simple_note_app
 ```
 
-## Path List
+## End Point List
 **1. GET**
 * `/notes`
 * `/notes/:id` (Get notes by id)
